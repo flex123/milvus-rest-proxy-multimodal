@@ -104,6 +104,15 @@ GET /health
    - Select your `milvus-rest-proxy-multimodal` repository
 
 2. **Configure Environment Variables** (Required):
+
+   **Method A: Using Project Shared Variables (Recommended)**
+   - Go to Project Settings → Variables tab
+   - Add: `MILVUS_HOST=your-actual-milvus-host`
+   - Optional: `MILVUS_PORT=443` (default)
+   - Go to your service → Settings → Variables tab
+   - Click "Import from project" and select the shared variables
+
+   **Method B: Service-Specific Variables**
    - Go to your service → Settings → Variables tab
    - Add: `MILVUS_HOST=your-actual-milvus-host`
    - Optional: `MILVUS_PORT=443` (default)
@@ -125,9 +134,12 @@ GET /health
 
 ### Troubleshooting
 If deployment fails:
-1. Check that `MILVUS_HOST` is set in Railway Variables tab
+1. **Check Environment Variables**: Ensure `MILVUS_HOST` is properly set
+   - Recommended: Use project shared variables and import them to your service
+   - Verify the variable appears in your service's Variables tab
 2. Verify the Milvus instance is accessible from Railway
 3. Check deployment logs for detailed error messages
+4. **Common Error**: "MILVUS_HOST environment variable is required" means the variable is not being passed to the container
 
 ### Alternative: Custom Start Command
 Instead of using Variables, you can set the start command in Railway:
